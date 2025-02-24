@@ -1,0 +1,34 @@
+package com.example;
+
+public class MoreDuplication {
+
+    public void computeTotal() {
+
+        int total = 0;
+
+        for (int i = 0; i < 10; i++) {
+
+            total += i;
+
+            System.out.println("Processing item " + i);
+
+        }
+
+        System.out.println("Total computed: " + total);
+
+    }
+
+    public void printItems() {
+
+        for (int i = 0; i < 10; i++) {
+
+            System.out.println("Item: " + i);
+
+        }
+
+        System.out.println("All items printed.");
+
+    }
+
+}
+ 

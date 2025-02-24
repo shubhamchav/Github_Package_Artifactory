@@ -1,0 +1,41 @@
+name: Publish to GitHub Packages.
+
+on:
+  push:
+    branches:
+      - master  # Trigger workflow on pushes to the main branch
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up JDK for Maven
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: 11
+          distribution: 'temurin'
+          cache: maven
+
+      # Step 3: Configure Maven for GitHub Packages
+      - name: Configure Maven for GitHub Packages
+        run: |
+          mkdir -p ~/.m2
+          echo "<settings>
+                  <servers>
+                    <server>
+                      <id>github</id>
+                      <username>pritamcdac</username>
+                      <password>${{ secrets.GITHUB_TOKEN }}</password>
+                    </server>
+                  </servers>
+                </settings>" > ~/.m2/settings.xml
+
+      # Step 4: Publish package to GitHub Packages
+      - name: Publish to GitHub Packages
+        run: mvn deploy

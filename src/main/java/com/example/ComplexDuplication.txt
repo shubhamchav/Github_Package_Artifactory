@@ -1,0 +1,19 @@
+package com.example;
+public class ComplexDuplication {
+   public void processOrder() {
+       int total = 0;
+       for (int i = 0; i < 10; i++) {
+           total += i;
+           System.out.println("Processing item " + i);
+       }
+       System.out.println("Order processed with total: " + total);
+   }
+   public void calculateSum() {
+       int total = 0;
+       for (int i = 0; i < 10; i++) {
+           total += i;
+           System.out.println("Processing item " + i);
+       }
+       System.out.println("Sum calculated with total: " + total);
+   }
+}

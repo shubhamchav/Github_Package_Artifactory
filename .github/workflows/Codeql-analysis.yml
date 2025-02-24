@@ -1,0 +1,32 @@
+name: CodeQL Analysis
+
+on: 
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  codeql-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Step 2: Initialize CodeQL with Java
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: java  # Specify Java as the language for analysis
+
+      # Step 3: Build the Java project
+      # CodeQL needs the code to be compiled to analyze it fully
+      - name: Build the Java Project
+        run: mvn clean install
+
+      # Step 4: Perform CodeQL Analysis
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
